@@ -9,7 +9,7 @@ import api from "./api";
 export const List = () => {
   const { data, isFetching, isSuccess } = useQuery(
     ["listData"],
-    () => api.get("/todos"N)
+    () => api.get("/todos")
   );
 
   return { isLoading, error, data };
