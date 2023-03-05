@@ -6,17 +6,15 @@ In this section, we will make a call to an API that returns a list of data. We w
 import { useQuery } from "react-query";
 import api from "./api";
 
-export const List = () => {
+export const show = (id) => {
   const { data, isFetching, isSuccess } = useQuery(
-    ["listTodo"],
+    ["showTodo",id],
     () => api.get("/todos")
   );
 
   return (
   <div>
-    <ul>
-      {data?.map(todo => <li>{todo.title}</li>)}
-    </ul>
+    <h3>{data.title}</h3>
   </div>
   );
 };
