@@ -8,9 +8,10 @@ import { useMutation, useQuery } from "react-query";
 import api from "../../utils/api";
 import { Formik,Form,Field } from "formik";
 
-const CreateMonster = () => {
-  const mutation = useMutation((newTodo) => {
-    return api.post("/todos", newTodo);
+const EditMonster = (props) => {
+  const {id} = props;
+  const mutation = useMutation((newValues) => {
+    return api.put(`/todos/${id}`, newValues);
   });
 
   function submit(values) {
@@ -28,5 +29,5 @@ const CreateMonster = () => {
   );
 };
 
-export default CreateMonster;
+export default EditMonster;
 ```
