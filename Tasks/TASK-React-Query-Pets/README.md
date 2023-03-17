@@ -15,10 +15,9 @@ Instead of getting our pets list from our `petsData` file, we will now get it fr
 
 ### Adopting a Pet
 
-1. We will move our adopt function to the store so we can access it anywhere in our app. Move the function to the store.
-2. In `PetItem.js` import our store and replace the function that's coming from props to our function that we did in the store.
+1. We will update the adopt function to use the `adopt` function from our `pets APIs`.
+2. In `PetItem.js` import our `pets APIs` and replace the function that's coming from props to a new `useMutation` function that update the pet, its a "put" type of call.
 
 ### Not Observing the Change?
 
-1. There's a component that needs to be marked as an observer, can you know which one it is and mark it as an observer?
-2. Don't forget to `import { observer } from "mobx-react";`.
+1. If you are not observing the change, you can invalidate the list query `key` to get the new data.
