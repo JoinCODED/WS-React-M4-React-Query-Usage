@@ -2,8 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sqlite3 = require("sqlite3").verbose();
 const samplePets = require("./petsData.js");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //DB
 const db = new sqlite3.Database(":memory:");
@@ -94,9 +98,6 @@ app.delete("/pets/:id", (req, res) => {
     res.json({ message: "Pet deleted successfully", changes: this.changes });
   });
 });
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const PORT = process.env.PORT || 8000;
 

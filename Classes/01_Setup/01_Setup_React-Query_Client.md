@@ -2,12 +2,12 @@
 First, install React Query using npm. In your terminal, navigate to the project directory and run the following command:
 
 ```js
-npm install react-query
+npm install @tanstack/react-query
 ```
 
 ## Step 2: Adding Client Provider
 ```js
- import { QueryClient, QueryClientProvider} from 'react-query'
+ import { QueryClient, QueryClientProvider} from '@tanstack/react-query'
  
  // Create a client
  const queryClient = new QueryClient()

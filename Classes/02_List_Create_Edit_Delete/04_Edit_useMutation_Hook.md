@@ -4,7 +4,7 @@ In this section, we will make a post a new item to the api, using the POST metho
 
 ```jsx
 import React from "react";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "../../utils/api";
 import { Formik,Form,Field } from "formik";
 

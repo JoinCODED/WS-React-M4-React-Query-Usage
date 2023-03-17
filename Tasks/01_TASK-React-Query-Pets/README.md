@@ -4,7 +4,7 @@ Fork and clone [this repo](https://github.com/JoinCODED/REACT-SP-Pets-Query) int
 
 ### Query
 
-1. Install React-Query and Axios `npm install react-query axios`.
+1. Install React-Query and Axios `npm install @tanstack/react-query axios`.
 2. Create a file called `api` in `src/utils`.
 3. Create a file called index.js inside `src/utils/api/pets` thats exports 2  function `list,adopt` whenever we say `pets APIs`
 
