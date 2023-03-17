@@ -1,8 +1,8 @@
 ### Steps
 
-Fork and clone [this repo](https://github.com/JoinCODED/REACT-SP-Pets-Zustand) into your `Development` folder
+Fork and clone [this repo](https://github.com/JoinCODED/REACT-SP-Pets-Query) into your `Development` folder
 
-### Zustand
+### Query
 
 1. Install React-Query and Axios `npm install react-query axios`.
 2. Create a file called `api` in `src/utils`.
