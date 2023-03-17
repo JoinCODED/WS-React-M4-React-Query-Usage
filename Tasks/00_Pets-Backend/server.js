@@ -19,6 +19,10 @@ db.serialize(() => {
         type TEXT NOT NULL,
         adopted BOOLEAN NOT NULL DEFAULT false,
         image TEXT
+      );
+      CREATE TABLE rooms (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
       )
     `);
 });
@@ -96,6 +100,75 @@ app.delete("/pets/:id", (req, res) => {
       return;
     }
     res.json({ message: "Pet deleted successfully", changes: this.changes });
+  });
+});
+
+// Create a room
+app.post("/rooms", (req, res) => {
+  const { name, type, image, adopted } = req.body;
+  const sql =
+    "INSERT INTO rooms (name, type, image, adopted) VALUES (?, ?, ?, ?)";
+  const params = [name, type, image, adopted];
+
+  db.run(sql, params, function (err) {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({ id: this.lastID, name, type, image, adopted });
+  });
+});
+
+// Get all rooms
+app.get("/rooms", (req, res) => {
+  const sql = "SELECT * FROM rooms";
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
+});
+
+// Get a room by id
+app.get("/rooms/:id", (req, res) => {
+  const sql = "SELECT * FROM rooms WHERE id = ?";
+  const params = [req.params.id];
+  db.get(sql, params, (err, row) => {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json(row);
+  });
+});
+
+// Update a room by id
+app.put("/rooms/:id", (req, res) => {
+  const { name, type, image, adopted } = req.body;
+  const sql =
+    "UPDATE rooms SET name = ?, type = ?, image = ?, adopted = ? WHERE id = ?";
+  const params = [name, type, image, adopted, req.params.id];
+
+  db.run(sql, params, function (err) {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({ id: req.params.id, name, type, image, adopted });
+  });
+});
+
+// Delete a room
+app.delete("/rooms/:id", (req, res) => {
+  const sql = "DELETE FROM rooms WHERE id = ?";
+  db.run(sql, [req.params.id], function (err) {
+    if (err) {
+      res.status(400).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "room deleted successfully", changes: this.changes });
   });
 });
 
