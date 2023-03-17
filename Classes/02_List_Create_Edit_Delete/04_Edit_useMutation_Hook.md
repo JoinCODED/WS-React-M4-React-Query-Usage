@@ -1,6 +1,6 @@
-## useQuery - The Listing Hook
+## useMutation - The Edit Request
 
-In this section, we will make a post a new item to the api, using the POST method
+In this section we will
 
 ```jsx
 import React from "react";
@@ -11,7 +11,7 @@ import { Formik,Form,Field } from "formik";
 const EditMonster = (props) => {
   const {id} = props;
   const mutation = useMutation((newValues) => {
-    return api.put(`/todos/${id}`, newValues);
+    return api.put(`/pets/${id}`, newValues);
   });
 
   function submit(values) {

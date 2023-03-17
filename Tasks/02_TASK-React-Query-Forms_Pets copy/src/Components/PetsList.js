@@ -3,13 +3,16 @@ import PetItem from "./PetItem";
 import petsApi from "../utils/api/pets";
 import { useQuery } from "@tanstack/react-query";
 
-function PetsList({ petsData }) {
-  console.log(petsData);
+function PetsList() {
   const [query, setQuery] = useState("");
   const [type, setType] = useState("");
-  const [pets, setPets] = useState(petsData);
-  const { data } = useQuery(["pets"], petsApi.list);
-  console.log(data);
+  const [pets, setPets] = useState([]);
+  const { isFetching } = useQuery(["pets"], petsApi.list, {
+    onSuccess: (data) => {
+      console.log(data);
+      setPets(data);
+    },
+  });
 
   const handleAdopt = (petId) =>
     setPets(pets.filter((pet) => pet.id !== petId));
@@ -22,18 +25,18 @@ function PetsList({ petsData }) {
     )
     .map((pet) => <PetItem key={pet.id} pet={pet} handleAdopt={handleAdopt} />);
   return (
-    <section id="doctors" class="doctor-section pt-140">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-xxl-5 col-xl-6 col-lg-7">
-            <div class="section-title text-center mb-30">
-              <h1 class="mb-25 wow fadeInUp" data-wow-delay=".2s">
+    <section id="doctors" className="doctor-section pt-140">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-xxl-5 col-xl-6 col-lg-7">
+            <div className="section-title text-center mb-30">
+              <h1 className="mb-25 wow fadeInUp" data-wow-delay=".2s">
                 Fur-ends
               </h1>
-              <div class="input-group rounded">
+              <div className="input-group rounded">
                 <input
                   type="search"
-                  class="form-control rounded"
+                  className="form-control rounded"
                   placeholder="Search"
                   aria-label="Search"
                   aria-describedby="search-addon"
@@ -43,7 +46,7 @@ function PetsList({ petsData }) {
               <br />
               Type:
               <select
-                class="form-select"
+                className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => setType(e.target.value)}
               >
@@ -58,7 +61,7 @@ function PetsList({ petsData }) {
           </div>
         </div>
 
-        <div class="row justify-content-center">{petList}</div>
+        <div className="row justify-content-center">{petList}</div>
       </div>
     </section>
   );

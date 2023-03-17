@@ -29,18 +29,16 @@ In this task, you are going to crate a form to add a new pet to the pets website
 6. Don't forget to [prevent the page from refreshing](https://www.robinwieruch.de/react-preventdefault/).
 7. Import our modal in `PetsList` and render it at the top.
 
-### 3. Creating in MOBX
+### 3. Creating in React Query
 
-1. In our `petStore` let's create a method for adding a pet.
-2. It takes an argument with our pet data but we still need an `id`.
-3. Generate a unique `id` for every new pet.
-4. In `PetCreateModal.js` import our store, and in `handleSubmit` call the method that adds a new pet from the store, and pass the method the new pet data that was taken from the form.
+1. In our `pets` API let's create a method for adding a pet.
+2. It takes an argument with our pet data .
+3. In `PetCreateModal.js` `handleSubmit` call the method that adds a new pet from the `api`, and pass the method the new pet data that was taken from the form.
 
 ### 4. Updating a Pet Data
 
-1. Create a file called `PetUpdateModal.js` in `Components`, Create a new modal that is similar to `PetCreateModal`, call  it `PetUpdateModal`
-3. Import the update modal in your `PetItem` component below the adopt button.
-4. For updating, we need the old values for the user to see, so let's pass the old data from `PetItem` to our modal using props.
-5. In our update modal get those props to create an inital value for our state, also add an id value because we already have one. but how to display them in our fields? hint: use the `value` property.
-6. In our mobx store create an `update` method thats takes an arguemnt and replaces the old pet with the new data coming with the same `id`.
-7. In `PetUpdateModal` call this new method in the `handleSubmit` function.
+1. In our `pets` API let's create a method for updating a pet.
+2. It takes an argument with our pet data .
+3. pass the pet data to the model as props if it exists.
+4. Create a hidden input in the form that holds the pet id.
+5. In `PetCreateModal.js` `handleSubmit` check if the pet id is present, if it is, call the update method, if not, call the create method.

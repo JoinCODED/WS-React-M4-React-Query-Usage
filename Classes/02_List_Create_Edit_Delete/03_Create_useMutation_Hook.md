@@ -1,4 +1,4 @@
-## useQuery - The Listing Hook
+## useMutation - The Create Request
 
 In this section, we will make a post a new item to the api, using the POST method
 
@@ -10,7 +10,7 @@ import { Formik,Form,Field } from "formik";
 
 const CreateMonster = () => {
   const mutation = useMutation((newTodo) => {
-    return api.post("/todos", newTodo);
+    return api.post(["/pets"], newTodo);
   });
 
   function submit(values) {

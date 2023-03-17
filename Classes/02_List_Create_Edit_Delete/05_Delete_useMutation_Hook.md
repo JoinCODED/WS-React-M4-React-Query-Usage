@@ -1,4 +1,4 @@
-## useQuery - The Listing Hook
+## useMutation - The Delete Request
 
 In this section, we will make a post a new item to the api, using the POST method
 
@@ -10,7 +10,11 @@ import { Formik,Form,Field } from "formik";
 
 const EditMonster = (props) => {
   const {id} = props;
-  const mutation = useMutation(id => api.destroy(id));
+  const mutation = useMutation(id => api.destroy(id),{
+    onSuccess: () => {
+      queryClient.invalidateQueries(["pets"]);
+    }
+  });
 
   function submit(values) {
     mutation.mutate(values);
